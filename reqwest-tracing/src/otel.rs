@@ -35,7 +35,7 @@ pub fn inject_opentelemetry_context_into_request(mut request: Request) -> Reques
 
     #[cfg(feature = "opentelemetry_0_24")]
     opentelemetry_0_24_pkg::global::get_text_map_propagator(|injector| {
-        use tracing_opentelemetry_0_24_pkg::OpenTelemetrySpanExt;
+        use tracing_opentelemetry_0_25_pkg::OpenTelemetrySpanExt;
         let context = Span::current().context();
         injector.inject_context(&context, &mut RequestCarrier::new(&mut request))
     });
